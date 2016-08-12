@@ -4,12 +4,19 @@
 /**
  * This function finds the number of divisors of a number.
  * int triNum: The passed in triangle value to find divisors of.
+ * 
+ * 
+ * 
  */
 int numDivisors(int triNum) {
 	int divisors = 1;
-	//Iterates up to triNum, if it is a divisor increment divisors
-	for( int x = 1; x <= triNum/2; x++) {
-		if( triNum % x == 0) { divisors++; }
+	//Iterates until the sqrt(triNum), since each divisor has a pair
+	//above the sqrt except that sqrt itself
+	for( int x = 1; x*x <= triNum; x++) {
+		if( triNum % x == 0) {
+			if (x*x < triNum) {divisors += 2;}
+			else {divisors += 1;}
+		}
 	}
 	return divisors;
 }
